@@ -2,6 +2,7 @@
 import smtplib
 import ssl
 from email.message import EmailMessage
+
 subject= "Email"
 body="text"
 sender_email="sender_email"
@@ -20,6 +21,8 @@ print("Email is sending...")
 context= ssl.create_default_context()
 
 with smtplib.SMTP_SSl("smtp.gmail.com",465,context=context) as server:
+
     server.login(sender_email, password)
-    server.sendmail(sender_email,reciever_email, message)
+    server.sendmail(sender_email,reciever_email, message.as_string())
+    
 print("Email is sended!")    
